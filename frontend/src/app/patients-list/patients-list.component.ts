@@ -36,7 +36,7 @@ export class PatientsListComponent implements OnInit, OnDestroy {
   onDelete(id) {
     this.patientsservice.deletePatient(id).then(
       () => {
-        this.router.navigate(['/all-patients']);
+        this.router.navigate(['all-patients']);
       }
     );
   }

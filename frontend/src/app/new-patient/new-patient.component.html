@@ -14,15 +14,30 @@
     </div>
     <div class="form-group">
       <label for="sex">Sexe</label>
-      <input type="text" id="sex" formControlName="sex" class="form-control">
-  </div>
-    <div class="form-group">
-        <label for="drugs">Médicament(s)</label>
-        <input type="text" id="drugs" formControlName="drugs" class="form-control">
+      <select id="sex" class="form-control" formControlName="sex">
+      <option value="F">F</option>
+      <option value="M">M</option>
+    </select>
     </div>
+    
     <div class="form-group">
+      <div formArrayName="drugs">
+        <label for="drugs">Médicament(s)</label>
+        <div class="form-group" *ngFor="let drugsControl of getDrugs().controls; let i = index">
+          <input type="text" class="form-control" [formControlName]="i">
+        </div>
+        <button type="button" class="btn btn-success" (click)="onAddDrugs()">Ajouter un médicament</button>
+      </div>
+    </div>
+
+    <div class="form-group"> 
+      <div formArrayName="treatments">
         <label for="treatments">Traitement(s)</label>
-        <input type="text" id="treatments" formControlName="treatments" class="form-control">
+        <div class="form-group" *ngFor="let treatmentsControl of getTreatments().controls; let i = index">
+          <input type="text" class="form-control" [formControlName]="i">
+        </div>
+        <button type="button" class="btn btn-success" (click)="onAddTreatments()">Ajouter un traitement</button>
+      </div>
     </div>
 
     <button class="btn btn-primary" (click)="onSubmit()" [disabled]="patientForm.invalid">Valider</button>

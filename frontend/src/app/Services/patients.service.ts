@@ -18,8 +18,8 @@ import { HttpClient } from '@angular/common/http';
         firstName: 'Thomas',
         age: 22,
         sex: 'M',
-        drugs:'doliprane',
-        treatments: 'gg'
+        drugs:['doliprane'],
+        treatments: ['gg']
       },
       {
         _id: '324sdfmoih4',
@@ -27,8 +27,8 @@ import { HttpClient } from '@angular/common/http';
         firstName: 'Guy',
         age: 55,
         sex: 'M',
-        drugs:'eferalgent',
-        treatments: 'ZZ'
+        drugs:['eferalgent'],
+        treatments: ['ZZ']
       },
     ];
     public patients$ = new Subject<Patient[]>();

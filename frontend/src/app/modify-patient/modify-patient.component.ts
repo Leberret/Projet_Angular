@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Patient } from '../models/Patient.model';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { PatientsService } from '../Services/patients.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -26,8 +26,8 @@ export class ModifyPatientComponent implements OnInit {
       firstName: [null, Validators.required],
       age: [0, Validators.required],
       sex: [null, Validators.required],
-      drugs: [null, Validators.required],
-      treatments: [null, Validators.required]
+      drugs: this.formBuilder.array([]),
+      treatments: this.formBuilder.array([])
     });
 
     this.route.params.subscribe(
@@ -48,14 +48,15 @@ export class ModifyPatientComponent implements OnInit {
   }
 
   onSubmit() {
+
     const patient = new Patient();
     patient._id = new Date().getTime().toString();
     patient.lastName = this.patientForm.get('lastName').value;
     patient.firstName = this.patientForm.get('firstName').value;
     patient.age = this.patientForm.get('age').value;
     patient.sex = this.patientForm.get('sex').value;
-    patient.drugs = this.patientForm.get('drugs').value;
-    patient.treatments = this.patientForm.get('treatments').value;
+    patient.drugs = this.patientForm.get('drugs').value ? this.patientForm.get('drugs').value: [] ;
+    patient.treatments = this.patientForm.get('treatments').value ? this.patientForm.get('treatments').value:[];
 
     this.patientsservice.modifyPatient(this.patient._id, patient).then(
       () => {
@@ -68,4 +69,18 @@ export class ModifyPatientComponent implements OnInit {
     );
   }
 
+  getDrugs(): FormArray {
+    return this.patientForm.get('drugs') as FormArray;
+  }
+  onAddDrugs() {
+    const newDrugsControl = this.formBuilder.control(null, Validators.required);
+    this.getDrugs().push(newDrugsControl);
+  }
+  getTreatments(): FormArray {
+    return this.patientForm.get('treatments') as FormArray;
+  }
+  onAddTreatments() {
+    const newTreatmentsControl = this.formBuilder.control(null, Validators.required);
+    this.getTreatments().push(newTreatmentsControl);
+  }
 }

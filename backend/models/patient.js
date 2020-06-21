@@ -5,8 +5,8 @@ const patientSchema = mongoose.Schema({
   lastName: { type: String, required: true },
   age: { type: Number, required: true },
   sex: { type: String, required: true },
-  drugs: { type: String, required: true },
-  treatments: { type: String, required: true },
+  drugs: { type: Array },
+  treatments: { type: Array },
 });
 
 module.exports = mongoose.model('Patient', patientSchema); 
