@@ -1,13 +1,14 @@
 <p class="text-center" *ngIf="patients.length <= 0">Aucun patient !</p>
-<div class="patients-grid" *ngIf="patients.length >= 0">
-  <div class="patient-pane"
-       *ngFor="let patient of patients"
-       [ngClass]="{'open': patient._id === chosenId}"
-       (click)="onPatientClicked(patient._id)">
-    <div class="patient-info">
-      <h3>
-        {{ patient.lastName }} {{ patient.firstName }}
-      </h3>
-    </div>
-  </div>
-</div>
+<div><mat-list *ngIf="patients.length >= 0">
+  <mat-list-item *ngFor="let patient of patients" >
+    {{ patient.lastName }} {{ patient.firstName }}
+    <button mat-raised-button color="warn"(click)="onPatientClicked(patient._id)">Détails</button>
+    <button mat-raised-button color="warn"(click)="onModify(patient._id)">Modifier</button>
+    <button mat-raised-button color="warn"(click)="onDelete(patient._id)">Supprimer</button>
+    
+  </mat-list-item>
+</mat-list></div>
+
+
+
+

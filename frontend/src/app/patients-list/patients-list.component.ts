@@ -29,7 +29,17 @@ export class PatientsListComponent implements OnInit, OnDestroy {
   onPatientClicked(id: string) {
     this.router.navigate(['/patient/' + id]);
   }
+  onModify(id) {
+    this.router.navigate(['/modify-patient/' + id]);
+  }
 
+  onDelete(id) {
+    this.patientsservice.deletePatient(id).then(
+      () => {
+        this.router.navigate(['/all-patients']);
+      }
+    );
+  }
   ngOnDestroy() {
     this.patientsSub.unsubscribe();
   }
