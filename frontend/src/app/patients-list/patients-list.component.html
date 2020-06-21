@@ -1,0 +1,13 @@
+<p class="text-center" *ngIf="patients.length <= 0">Aucun patient !</p>
+<div class="patients-grid" *ngIf="patients.length >= 0">
+  <div class="patient-pane"
+       *ngFor="let patient of patients"
+       [ngClass]="{'open': patient._id === chosenId}"
+       (click)="onPatientClicked(patient._id)">
+    <div class="patient-info">
+      <h3>
+        {{ patient.lastName }} {{ patient.firstName }}
+      </h3>
+    </div>
+  </div>
+</div>

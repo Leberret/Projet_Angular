@@ -1,0 +1,15 @@
+<div>
+  <button class="btn btn-link" (click)="onGoBack()"><< Retour</button>
+  <div class="patient-pane">
+    <div class="patient-info">
+      <h1>{{ patient.lastName }} {{patient.firstName}}</h1>
+      <p class="patient-age">{{ patient.age }}</p>
+      <p class="patient-sex">{{ patient.sex }}</p>
+      <p>{{ patient?.drugs }}</p>
+      <p>{{ patient?.treatments }}</p>
+
+      <button class="btn btn-success m-1" (click)="onModify()">Modifier</button>
+      <button class="btn btn-danger m-1" (click)="onDelete()">Supprimer</button>
+    </div>
+  </div>
+</div>
