@@ -7,9 +7,13 @@
       <p class="patient-age">{{ patient.age }} ans</p>
       <label for="sex">Sexe</label>
       <p class="patient-sex">{{ patient.sex }}</p>
-      
-      <app-drug></app-drug>
-
+      <div>
+        <label for="drugs">Médicament(s)</label>
+        <span *ngFor="let drug of patient.drugs; let i=index">
+          <div>Nom : {{ drug.drug }}</div>
+          <div>Code : {{ drug.code }}</div> 
+        </span>
+      </div>
       <button class="btn btn-success m-1" (click)="onModify()">Modifier</button>
       <button class="btn btn-danger m-1" (click)="onDelete()">Supprimer</button>
     </div>

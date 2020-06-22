@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Patient } from '../models/Patient.model';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { PatientsService } from '../Services/patients.service';
-import { FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-patient',
@@ -11,11 +10,13 @@ import { FormArray } from '@angular/forms';
 })
 export class PatientComponent implements OnInit{
   public patient: Patient;
+  errorMessage: string;
   constructor(private router:Router,
               private route: ActivatedRoute,
               private patientsservice: PatientsService) { }
 
   ngOnInit() {
+
     this.route.params.subscribe(
       (params: Params) => {
         this.patientsservice.getPatientById(params.id).then(
@@ -25,9 +26,9 @@ export class PatientComponent implements OnInit{
         );
       }
     );
-
-  
   }
+
+
   onGoBack() {
     this.router.navigate(['/all-patients']);
   }
