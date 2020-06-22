@@ -3,16 +3,12 @@
   <div class="patient-pane">
     <div class="patient-info">
       <h1>{{ patient.lastName }} {{patient.firstName}}</h1>
-      <p class="patient-age">Age : {{ patient.age }}</p>
-      <p class="patient-sex">Sexe : {{ patient.sex }}</p>
-      <p>Médicament(s) :</p>
-      <p *ngIf="patient.drugs && patient.drugs.length > 0">
-        <span *ngFor="let drug of patient.drugs"> {{ drug }} - </span>
-      </p>
-      <p>Traitement(s) :</p>
-      <p *ngIf="patient.treatments && patient.treatments.length > 0">
-        <span *ngFor="let treatment of patient.treatments"> {{ treatment }} - </span>
-      </p>
+      <label for="age">Âge</label>
+      <p class="patient-age">{{ patient.age }} ans</p>
+      <label for="sex">Sexe</label>
+      <p class="patient-sex">{{ patient.sex }}</p>
+      
+      <app-drug></app-drug>
 
       <button class="btn btn-success m-1" (click)="onModify()">Modifier</button>
       <button class="btn btn-danger m-1" (click)="onDelete()">Supprimer</button>

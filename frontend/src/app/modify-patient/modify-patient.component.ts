@@ -68,7 +68,6 @@ export class ModifyPatientComponent implements OnInit {
       }
     );
   }
-
   getDrugs(): FormArray {
     return this.patientForm.get('drugs') as FormArray;
   }
@@ -83,4 +82,5 @@ export class ModifyPatientComponent implements OnInit {
     const newTreatmentsControl = this.formBuilder.control(null, Validators.required);
     this.getTreatments().push(newTreatmentsControl);
   }
+  
 }

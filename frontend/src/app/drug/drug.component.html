@@ -1,0 +1,15 @@
+<div>
+    <div class="drug-pane"> 
+        <h3>Médicament(s)</h3>
+      <div class="drug-info" *ngIf="drug">
+        <label for="drugName">Nom</label>
+        <p class="drug-name">{{ drug.name }}</p>
+        <label for="code">Code</label>
+        <p class="drug-code">{{ drug.code }}</p>
+      </div>
+
+      <button class="btn btn-success" (click)="onCreate()">Nouveau médicament</button>
+      <app-new-drug></app-new-drug>
+    </div>
+  </div>
+  

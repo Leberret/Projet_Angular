@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Patient } from '../models/Patient.model';
 import { HttpClient } from '@angular/common/http';
+import { Drug } from '../models/Drug.model';
 
 @Injectable({
     providedIn: 'root'
@@ -10,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
   export class PatientsService {
 
     constructor(private http: HttpClient) {}
-  
+    
     private patients: Patient[] = [
       {
         _id: '324sdfmoih3',
@@ -18,7 +19,12 @@ import { HttpClient } from '@angular/common/http';
         firstName: 'Thomas',
         age: 22,
         sex: 'M',
-        drugs:['doliprane'],
+        drugs: [
+          {
+            name: 'Doliprane',
+            code: 'FFD'
+          }
+        ],
         treatments: ['gg']
       },
       {
@@ -27,9 +33,14 @@ import { HttpClient } from '@angular/common/http';
         firstName: 'Guy',
         age: 55,
         sex: 'M',
-        drugs:['eferalgent'],
+        drugs:[
+          {
+            name: 'Aspirine',
+            code: 'RRD'
+          }
+        ],
         treatments: ['ZZ']
-      },
+      }
     ];
     public patients$ = new Subject<Patient[]>();
   
@@ -105,5 +116,20 @@ import { HttpClient } from '@angular/common/http';
         );
       });
     }
+
+    createNewDrug(drug: Drug) {
+      return new Promise((resolve, reject) => {
+        this.http.post('http://localhost:3000/api/drugs', drug).subscribe(
+          (response) => {
+            resolve(response);
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+      });
+
+    }
+  
   }
   

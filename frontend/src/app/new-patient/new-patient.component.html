@@ -19,26 +19,29 @@
       <option value="M">M</option>
     </select>
     </div>
-    
+
+
     <div class="form-group">
+      <label for="drugs">Médicament(s)</label>
+
       <div formArrayName="drugs">
-        <label for="drugs">Médicament(s)</label>
         <div class="form-group" *ngFor="let drugsControl of getDrugs().controls; let i = index">
-          <input type="text" class="form-control" [formControlName]="i">
+          
+          <ng-container [formGroupName]="i">
+            <div class="form-group">
+              <label for="name">Nom</label>
+              <input type="text" class="form-control" formControlName="name">
+            </div>
+            <div class="form-group">
+              <label for="code">Code</label>
+              <input type="text" class="form-control" formControlName="code">
+            </div>
+          </ng-container>
         </div>
         <button type="button" class="btn btn-success" (click)="onAddDrugs()">Ajouter un médicament</button>
       </div>
     </div>
 
-    <div class="form-group"> 
-      <div formArrayName="treatments">
-        <label for="treatments">Traitement(s)</label>
-        <div class="form-group" *ngFor="let treatmentsControl of getTreatments().controls; let i = index">
-          <input type="text" class="form-control" [formControlName]="i">
-        </div>
-        <button type="button" class="btn btn-success" (click)="onAddTreatments()">Ajouter un traitement</button>
-      </div>
-    </div>
 
     <button class="btn btn-primary" (click)="onSubmit()" [disabled]="patientForm.invalid">Valider</button>
     <p class="alert-danger" *ngIf="errorMessage">{{ errorMessage }}</p>

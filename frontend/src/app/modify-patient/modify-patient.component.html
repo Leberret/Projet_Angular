@@ -12,27 +12,12 @@
     <label for="age">Âge</label>
     <input type="number" id="age" class="form-control" formControlName="age" min="0">
     </div>
-
     <div class="form-group">
-      <label for="drugs">Médicament(s)</label>
-      <input *ngIf="patient.drugs && patient.drugs.length > 0" type="string" id="drugs" class="form-control" formControlName="drugs">
-      <div formArrayName="drugs">
-        <div class="form-group" *ngFor="let drugsControl of getDrugs().controls; let i = index">
-          <input type="text" class="form-control" [formControlName]="i">
-        </div>
-        <button type="button" class="btn btn-success" (click)="onAddDrugs()">Ajouter un médicament</button>
-      </div>
+      <label for="sex">Sexe</label>
+      <input type="text" id="sex" class="form-control" formControlName="sex">
     </div>
 
-    <div class="form-group"> 
-      <div formArrayName="treatments">
-        <label for="treatments">Traitement(s)</label>
-                <div class="form-group" *ngFor="let treatmentsControl of getTreatments().controls; let i = index">
-          <input type="text" class="form-control" [formControlName]="i">
-        </div>
-        <button type="button" class="btn btn-success" (click)="onAddTreatments()">Ajouter un traitement</button>
-      </div>
-    </div>
+    
 
     <button class="btn btn-success" (click)="onSubmit()" [disabled]="patientForm.invalid">Valider</button>
     <p class="alert-danger" *ngIf="errorMessage">{{ errorMessage }}</p>

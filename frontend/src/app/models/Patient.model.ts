@@ -1,3 +1,5 @@
+import { Drug } from './Drug.model';
+
 export class Patient {
   
   _id: string;
@@ -5,7 +7,7 @@ export class Patient {
   firstName: string;
   age: number;
   sex: string;
-  drugs?: string[];
+  drugs?: Drug[];
   treatments?:string[];
 
 }

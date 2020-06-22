@@ -4,6 +4,7 @@ import { PatientsListComponent } from './patients-list/patients-list.component';
 import { PatientComponent } from './patient/patient.component';
 import { NewPatientComponent } from './new-patient/new-patient.component';
 import { ModifyPatientComponent } from './modify-patient/modify-patient.component';
+import { NewDrugComponent } from './new-drug/new-drug.component';
 
 
 const routes: Routes = [
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'all-patients', component: PatientsListComponent },
   { path: 'patient/:id', component: PatientComponent },
   { path: 'modify-patient/:id', component: ModifyPatientComponent },
+  { path: 'new-drug/:id', component: NewDrugComponent },
   { path: '', pathMatch: 'full', redirectTo: 'all-patients' },
   { path: '**', redirectTo: 'all-patients' }
 ]

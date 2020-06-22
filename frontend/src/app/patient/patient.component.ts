@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Patient } from '../models/Patient.model';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { PatientsService } from '../Services/patients.service';
+import { FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-patient',
@@ -24,6 +25,8 @@ export class PatientComponent implements OnInit{
         );
       }
     );
+
+  
   }
   onGoBack() {
     this.router.navigate(['/all-patients']);
@@ -40,6 +43,7 @@ export class PatientComponent implements OnInit{
       }
     );
   }
+
 
 
 }
