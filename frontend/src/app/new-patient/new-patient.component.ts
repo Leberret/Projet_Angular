@@ -10,26 +10,41 @@ import { Drug } from '../models/Drug.model';
   templateUrl: './new-patient.component.html',
   styleUrls: ['./new-patient.component.scss']
 })
-export class NewPatientComponent implements OnInit {
+export class NewPatientComponent {
 
-  public patientForm: FormGroup;
+  patientForm: FormGroup;
   public errorMessage: string;
-  public drugForm : FormGroup;
   constructor(private formBuilder: FormBuilder,
               private patientsservice: PatientsService,
-              private router:Router) { }
-
-  ngOnInit() {
-    this.drugForm = this.formBuilder.group({name: null, code: null,});
+              private router:Router) {
+          
     this.patientForm = this.formBuilder.group({
-      lastName: [null, Validators.required],
-      firstName: [null, Validators.required],
+      lastName: ['', Validators.required],
+      firstName: ['', Validators.required],
       age: [0, Validators.required],
-      sex: [null, Validators.required],
-      drugs: this.formBuilder.array([this.drugForm]),
-      treatments: this.formBuilder.array([])
-    });
+      sex: ['', Validators.required],
+      drugs: this.formBuilder.array([]),
+      treatments: this.formBuilder.array([]),
+    }); 
   }
+  
+  get drugs() : FormArray {
+    return this.patientForm.get('drugs') as FormArray;
+  }
+  newDrug(): FormGroup{
+    return this.formBuilder.group({
+      drug:'',
+      code:'',
+    })
+  }
+  addDrugs() {
+    this.drugs.push(this.newDrug());
+  }
+
+  removeDrug(i:number){
+    this.drugs.removeAt(i);
+  }
+
   onSubmit() {
     //const drug =new Drug();
     const patient = new Patient();
@@ -42,7 +57,7 @@ export class NewPatientComponent implements OnInit {
     //drug.name = this.drugForm.get('name').value;
     //drug.code = this.drugForm.get('code').value;
     patient.treatments = this.patientForm.get('treatments').value ? this.patientForm.get('treatments').value:[];
-
+    
 
     this.patientsservice.createNewPatient(patient).then(
       () => {
@@ -56,19 +71,13 @@ export class NewPatientComponent implements OnInit {
     );
   }
 
-  getDrugs() {
-    return this.patientForm.get('drugs') as FormArray;
-  }
-  onAddDrugs() {
-    const newDrugsControl = this.formBuilder.control(this.drugForm);
-    this.getDrugs().push(newDrugsControl);
-  }
+  /*
   getTreatments(): FormArray {
     return this.patientForm.get('treatments') as FormArray;
   }
   onAddTreatments() {
     const newTreatmentsControl = this.formBuilder.control(null, Validators.required);
     this.getTreatments().push(newTreatmentsControl);
-  }
+  }*/
   
 }
