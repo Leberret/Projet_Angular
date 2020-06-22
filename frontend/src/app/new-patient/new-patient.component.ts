@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { PatientsService } from '../Services/patients.service';
 import { Router } from '@angular/router';
 import { Patient } from '../models/Patient.model';
-import { Drug } from '../models/Drug.model';
 
 @Component({
   selector: 'app-new-patient',
@@ -43,6 +42,25 @@ export class NewPatientComponent {
 
   removeDrug(i:number){
     this.drugs.removeAt(i);
+  }
+
+  get treatments() : FormArray {
+    return this.patientForm.get('treatments') as FormArray;
+  }
+  newTreatment(): FormGroup{
+    return this.formBuilder.group({
+      start: new Date('Janvier 17, 2020'),
+      end:new Date('Mars 17, 2020'),
+      text: '',
+      doctor:{},
+    })
+  }
+  addTreatments() {
+    this.treatments.push(this.newTreatment());
+  }
+
+  removeTreatment(i:number){
+    this.treatments.removeAt(i);
   }
 
   onSubmit() {

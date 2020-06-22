@@ -35,6 +35,23 @@
 
       </div>
 
+      <label for="treatments">Traitement(s)</label>
+
+      <div formArrayName="treatments">
+        <div *ngFor="let treatment of treatments.controls; let i=index">
+          <div [formGroupName]="i">
+            Début : <input type="date" class="form-control" formControlName="start">
+            Fin : <input type="date"  class="form-control" formControlName="end">
+            Description : <input type="text"  class="form-control" formControlName="text">
+            Docteur : 
+
+            <button class="btn btn-danger" (click)="removeTreatment(i)">Supprimer</button>
+          </div>
+        </div>
+        <button class="btn btn-success" type="button" (click)="addTreatments()">Ajouter</button>
+
+      </div>
+
     <button class="btn btn-primary" (click)="onSubmit()" [disabled]="patientForm.invalid">Valider</button>
     <p class="alert-danger" *ngIf="errorMessage">{{ errorMessage }}</p>
   </form>

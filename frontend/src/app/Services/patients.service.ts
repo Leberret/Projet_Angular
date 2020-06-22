@@ -25,7 +25,17 @@ import { Drug } from '../models/Drug.model';
             code: 'FFD'
           }
         ],
-        treatments: ['gg']
+        treatments: [
+          {
+            start: new Date('Janvier 17, 2020'),
+            end: new Date('Mars 17, 2020'),
+            text: 'Description',
+            doctor: {
+              lastName: 'LE BERRE',
+              firstName: 'Guy',
+              speciality: 'podologue'}
+          }
+        ]
       },
       {
         _id: '324sdfmoih4',
@@ -39,7 +49,17 @@ import { Drug } from '../models/Drug.model';
             code: 'RRD'
           }
         ],
-        treatments: ['ZZ']
+        treatments: [
+          {
+            start: new Date('Janvier 17, 2020'),
+            end: new Date('Mars 17, 2020'),
+            text: 'Description',
+            doctor: {
+              lastName: 'LE BERRE',
+              firstName: 'Guy',
+              speciality: 'podologue'}
+          }
+        ]
       }
     ];
     public patients$ = new Subject<Patient[]>();

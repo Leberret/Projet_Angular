@@ -1,4 +1,5 @@
 import { Drug } from './Drug.model';
+import { Treatment } from './Treatment.model';
 
 export class Patient {
   
@@ -8,6 +9,6 @@ export class Patient {
   age: number;
   sex: string;
   drugs?: Drug[];
-  treatments?:string[];
+  treatments?: Treatment[];
 
 }
