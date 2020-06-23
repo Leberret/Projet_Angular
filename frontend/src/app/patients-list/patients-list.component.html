@@ -1,12 +1,12 @@
 <p class="text-center" *ngIf="patients.length <= 0">Aucun patient !</p>
 <mat-list *ngIf="patients.length >= 0">
   <mat-list-item *ngFor="let patient of patients" >
-    <p>{{ patient.lastName }} {{ patient.firstName }}</p>
+    <mat-card>{{ patient.lastName }} {{ patient.firstName }}
 
     <a mat-raised-button color="accent" (click)="onPatientClicked(patient._id)">Détails</a>
     <button mat-raised-button color="primary" (click)="onModify(patient._id)">Modifier</button>
-    <button mat-raised-button color="warn" (click)="onDelete(patient._id)">Supprimer</button>
-    <mat-divider></mat-divider>
+    <button mat-raised-button color="warn" (click)="onDelete(patient._id)">Supprimer</button></mat-card>
+    
   </mat-list-item>
 </mat-list>
 

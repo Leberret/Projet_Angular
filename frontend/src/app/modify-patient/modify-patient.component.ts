@@ -46,6 +46,29 @@ export class ModifyPatientComponent implements OnInit {
     this.drugs.removeAt(i);
   }
 
+  get treatments() : FormArray {
+    return this.patientForm.get('treatments') as FormArray;
+  }
+  newTreatment(): FormGroup{
+    return this.formBuilder.group({
+      start: new Date('Janvier 17, 2020'),
+      end:new Date('Mars 17, 2020'),
+      text: ['', Validators.required],
+      doctor: this.formBuilder.group({
+        doctorLastName: ['', Validators.required],
+        doctorFirstName: ['', Validators.required],
+        speciality: ['', Validators.required]
+      }),
+    });
+  }
+  addTreatments() {
+    this.treatments.push(this.newTreatment());
+  }
+
+  removeTreatment(i:number){
+    this.treatments.removeAt(i);
+  }
+
 
   ngOnInit(): void {
 

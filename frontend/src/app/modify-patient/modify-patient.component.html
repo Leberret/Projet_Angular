@@ -22,21 +22,13 @@
     </mat-form-field>
 
     <legend>Médicament(s)</legend>
-      <div *ngIf="patient.drugs && patient.drugs.length >=0">
-        <div *ngFor="let drug of patient.drugs; let i=index">
-          <div (formGroupName)="i">
-            <mat-form-field>
-              <label>Nom</label>
-              <input matInput type="text" id="drug" formControlName="drug">
-            </mat-form-field>
-            <mat-form-field>
-              <label>Code</label>
-              <input matInput type="text" id="code" formControlName="code">
-            </mat-form-field>
-            <button mat-raised-button color="warn" (click)="removeDrug(i)">Supprimer</button>
-          </div>
-        </div>
-      </div>
+    <div>
+      <span *ngFor="let drug of patient.drugs; let i=index">
+        <div>Nom : {{ drug.drug }}</div>
+        <div>Code : {{ drug.code }}</div> 
+      </span>
+    </div>
+
     <div formArrayName="drugs">
       <div *ngFor="let drug of drugs.controls; let i=index">
         <div [formGroupName]="i">
@@ -55,6 +47,45 @@
 
     </div>
     
+    <legend>Traitement(s)</legend>
+
+    <div formArrayName="treatments">
+      <div *ngFor="let treatment of treatments.controls; let i=index">
+        <div [formGroupName]="i">
+          <mat-form-field>
+            <label>Date de début</label>
+            <input matInput type="date" formControlName="start">
+          </mat-form-field>
+          <mat-form-field>
+            <label>Date de fin</label>
+            <input matInput type="date" formControlName="end">
+          </mat-form-field>
+          <mat-form-field>
+            <label>Description</label>
+            <input matInput type="text" formControlName="text">
+          </mat-form-field>
+          <div formGroupName="doctor">
+            <legend>Docteur </legend>
+            <mat-form-field>
+              <label>Nom</label>
+              <input matInput type="text" formControlName="doctorLastName">
+            </mat-form-field>
+            <mat-form-field>
+              <label>Prénom</label>
+              <input matInput type="text" formControlName="doctorFirstName">
+            </mat-form-field>
+            <mat-form-field>
+              <label>Spécialité</label>
+              <input matInput type="text" formControlName="speciality">
+            </mat-form-field>
+          </div>
+
+          <button mat-raised-button color="warn" (click)="removeTreatment(i)">Supprimer</button>
+        </div>
+      </div>
+      <button mat-raised-button color="primary" (click)="addTreatments()">Ajouter</button>
+
+    </div>
     
     
 
