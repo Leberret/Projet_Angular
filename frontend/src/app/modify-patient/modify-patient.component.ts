@@ -17,7 +17,17 @@ export class ModifyPatientComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private route: ActivatedRoute,
               private router: Router,
-              private patientsservice: PatientsService) { }
+              private patientsservice: PatientsService) {
+    this.patientForm = this.formBuilder.group({
+    lastName: [null, Validators.required],
+    firstName: [null, Validators.required],
+    age: [0, Validators.required],
+    sex: [null, Validators.required],
+    drugs: this.formBuilder.array([]),
+    treatments: this.formBuilder.array([])
+    });
+  }
+  
   
   get drugs() : FormArray {
     return this.patientForm.get('drugs') as FormArray;
@@ -35,16 +45,9 @@ export class ModifyPatientComponent implements OnInit {
   removeDrug(i:number){
     this.drugs.removeAt(i);
   }
-  ngOnInit(): void {
 
-    this.patientForm = this.formBuilder.group({
-      lastName: [null, Validators.required],
-      firstName: [null, Validators.required],
-      age: [0, Validators.required],
-      sex: [null, Validators.required],
-      drugs: this.formBuilder.array([]),
-      treatments: this.formBuilder.array([])
-    });
+
+  ngOnInit(): void {
 
     this.route.params.subscribe(
       (params) => {
@@ -84,19 +87,8 @@ export class ModifyPatientComponent implements OnInit {
       }
     );
   }
-  getDrugs(): FormArray {
-    return this.patientForm.get('drugs') as FormArray;
+
+  onGoBack() {
+    this.router.navigate(['/all-patients']);
   }
-  onAddDrugs() {
-    const newDrugsControl = this.formBuilder.control(null, Validators.required);
-    this.getDrugs().push(newDrugsControl);
-  }
-  getTreatments(): FormArray {
-    return this.patientForm.get('treatments') as FormArray;
-  }
-  onAddTreatments() {
-    const newTreatmentsControl = this.formBuilder.control(null, Validators.required);
-    this.getTreatments().push(newTreatmentsControl);
-  }
-  
 }

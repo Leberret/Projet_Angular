@@ -68,7 +68,6 @@ export class NewPatientComponent {
   }
 
   onSubmit() {
-    //const drug =new Drug();
     const patient = new Patient();
     patient._id = new Date().getTime().toString();
     patient.lastName = this.patientForm.get('lastName').value;
@@ -76,8 +75,6 @@ export class NewPatientComponent {
     patient.age = this.patientForm.get('age').value;
     patient.sex = this.patientForm.get('sex').value;
     patient.drugs = this.patientForm.get('drugs').value ? this.patientForm.get('drugs').value: [] ;
-    //drug.name = this.drugForm.get('name').value;
-    //drug.code = this.drugForm.get('code').value;
     patient.treatments = this.patientForm.get('treatments').value ? this.patientForm.get('treatments').value:[];
     
 

@@ -1,4 +1,5 @@
 <button mat-raised-button color="basic" (click)="onGoBack()"><< Retour</button>
+<p class="text-center" *ngIf="patients.length <= 0">Aucun docteur !</p>
 
 <mat-list role="list" *ngIf="patients.length >= 0">
     <div *ngFor="let patient of patients" >

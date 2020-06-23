@@ -1,3 +1,6 @@
+<div>
+  <button mat-raised-button color="basic" (click)="onGoBack()"><< Retour</button>
+</div>
 <div class="col-sm-6 offset-sm-3 mt-2">
   <form [formGroup]="patientForm">
     <legend>Informations patient</legend>
@@ -19,23 +22,31 @@
     </mat-form-field>
 
     <legend>Médicament(s)</legend>
-    <div *ngIf="patient.treatments.length > 0">
-      <mat-form-field *ngFor="let treatment of patient.treatments">
-        <label>Nom</label>
-        <input matInput type="text" id="drug" formControlName="treatment.drug">
-      </mat-form-field>
-    </div>
-    
+      <div *ngIf="patient.drugs && patient.drugs.length >=0">
+        <div *ngFor="let drug of patient.drugs; let i=index">
+          <div (formGroupName)="i">
+            <mat-form-field>
+              <label>Nom</label>
+              <input matInput type="text" id="drug" formControlName="drug">
+            </mat-form-field>
+            <mat-form-field>
+              <label>Code</label>
+              <input matInput type="text" id="code" formControlName="code">
+            </mat-form-field>
+            <button mat-raised-button color="warn" (click)="removeDrug(i)">Supprimer</button>
+          </div>
+        </div>
+      </div>
     <div formArrayName="drugs">
       <div *ngFor="let drug of drugs.controls; let i=index">
         <div [formGroupName]="i">
           <mat-form-field>
             <label>Nom</label>
-            <input matInput type="text" formControlName="drug">
+            <input matInput type="text" id="drug" formControlName="drug">
           </mat-form-field>
           <mat-form-field>
             <label>Code</label>
-            <input matInput type="text" formControlName="code">
+            <input matInput type="text" id="code" formControlName="code">
           </mat-form-field>
           <button mat-raised-button color="warn" (click)="removeDrug(i)">Supprimer</button>
         </div>
@@ -43,6 +54,9 @@
       <button mat-raised-button color="primary" (click)="addDrugs()">Ajouter</button>
 
     </div>
+    
+    
+    
 
     <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="patientForm.invalid">Valider</button>
     <p class="alert-danger" *ngIf="errorMessage">{{ errorMessage }}</p>

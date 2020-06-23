@@ -1,7 +1,8 @@
 <p class="text-center" *ngIf="patients.length <= 0">Aucun patient !</p>
 <mat-list *ngIf="patients.length >= 0">
   <mat-list-item *ngFor="let patient of patients" >
-    <p color="black">{{ patient.lastName }} {{ patient.firstName }}</p>
+    <p>{{ patient.lastName }} {{ patient.firstName }}</p>
+
     <a mat-raised-button color="accent" (click)="onPatientClicked(patient._id)">Détails</a>
     <button mat-raised-button color="primary" (click)="onModify(patient._id)">Modifier</button>
     <button mat-raised-button color="warn" (click)="onDelete(patient._id)">Supprimer</button>
@@ -9,7 +10,9 @@
   </mat-list-item>
 </mat-list>
 
+<a  mat-raised-button color="primary" routerLink="/new-patient" routerLinkActive="active">Ajouter un patient</a>
 
+<a mat-raised-button color="basic" routerLink="/doctors" routerLinkActive="active">Liste docteurs</a>
 
 
 
