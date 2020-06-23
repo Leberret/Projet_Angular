@@ -18,7 +18,23 @@ export class ModifyPatientComponent implements OnInit {
               private route: ActivatedRoute,
               private router: Router,
               private patientsservice: PatientsService) { }
+  
+  get drugs() : FormArray {
+    return this.patientForm.get('drugs') as FormArray;
+  }
+  newDrug(): FormGroup{
+    return this.formBuilder.group({
+      drug:['', Validators.required],
+      code:['', Validators.required],
+    })
+  }
+  addDrugs() {
+    this.drugs.push(this.newDrug());
+  }
 
+  removeDrug(i:number){
+    this.drugs.removeAt(i);
+  }
   ngOnInit(): void {
 
     this.patientForm = this.formBuilder.group({

@@ -93,13 +93,8 @@ export class NewPatientComponent {
     );
   }
 
-  /*
-  getTreatments(): FormArray {
-    return this.patientForm.get('treatments') as FormArray;
+  onGoBack() {
+    this.router.navigate(['/all-patients']);
   }
-  onAddTreatments() {
-    const newTreatmentsControl = this.formBuilder.control(null, Validators.required);
-    this.getTreatments().push(newTreatmentsControl);
-  }*/
   
 }

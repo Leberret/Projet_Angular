@@ -1,34 +1,32 @@
-<div>
-  <button class="btn btn-link" (click)="onGoBack()"><< Retour</button>
-  <div class="patient-pane">
-    <div class="patient-info">
-      <h1>{{ patient.lastName }} {{patient.firstName}}</h1>
-      <label for="age">Âge</label>
-      <p class="patient-age">{{ patient.age }} ans</p>
-      <label for="sex">Sexe</label>
-      <p class="patient-sex">{{ patient.sex }}</p>
-      <div>
-        <label for="drugs">Médicament(s)</label>
-        <span *ngFor="let drug of patient.drugs; let i=index">
-          <div>Nom : {{ drug.drug }}</div>
-          <div>Code : {{ drug.code }}</div> 
-        </span>
-      </div>
-
-      <div>
-        <label for="drugs">Traitement(s)</label>
-        <span *ngFor="let treatment of patient.treatments; let i=index">
-          <div>Début : {{ treatment.start }}</div>
-          <div>Fin : {{ treatment.end }}</div> 
-          <div>Description : {{treatment.text}}</div>
-          <div>Docteur : Nom : {{treatment.doctor.doctorLastName}}
-            Prénom : {{treatment.doctor.doctorFirstName}}
-            Spécialité : {{treatment.doctor.speciality}}
-          </div>
-        </span>
-      </div>
-      <button class="btn btn-success m-1" (click)="onModify()">Modifier</button>
-      <button class="btn btn-danger m-1" (click)="onDelete()">Supprimer</button>
+<button mat-raised-button color="basic" (click)="onGoBack()"><< Retour</button>
+<mat-card class="patient-pane">
+  <div class="patient-info">
+    <mat-card-title>{{ patient.lastName }} {{patient.firstName}}</mat-card-title>
+    <label>Âge</label>
+    <p class="patient-age">{{ patient.age }} ans</p>
+    <label for="sex">Sexe</label>
+    <p class="patient-sex">{{ patient.sex }}</p>
+    <div>
+      <label for="drugs">Médicament(s)</label>
+      <span *ngFor="let drug of patient.drugs; let i=index">
+        <div>Nom : {{ drug.drug }}</div>
+        <div>Code : {{ drug.code }}</div> 
+      </span>
     </div>
+
+    <div>
+      <label for="drugs">Traitement(s)</label>
+      <span *ngFor="let treatment of patient.treatments; let i=index">
+        <div>Début : {{ treatment.start }}</div>
+        <div>Fin : {{ treatment.end }}</div> 
+        <div>Description : {{treatment.text}}</div>
+        <div>Docteur : Nom : {{treatment.doctor.doctorLastName}}
+          Prénom : {{treatment.doctor.doctorFirstName}}
+          Spécialité : {{treatment.doctor.speciality}}
+        </div>
+      </span>
+    </div>
+    <button mat-raised-button color="primary" (click)="onModify()">Modifier</button>
+    <button mat-raised-button color="warn" (click)="onDelete()">Supprimer</button>
   </div>
-</div>
+</mat-card>

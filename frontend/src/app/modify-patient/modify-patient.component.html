@@ -1,25 +1,50 @@
 <div class="col-sm-6 offset-sm-3 mt-2">
   <form [formGroup]="patientForm">
-    <div class="form-group">
-        <label for="lastName">Nom</label>
-        <input type="text" id="lastName" formControlName="lastName" class="form-control">
-    </div>
-    <div class="form-group">
-        <label for="firstName">Prénom</label>
-        <input type="text" id="firstName" formControlName="firstName" class="form-control">
-    </div>
-    <div class="form-group">
-    <label for="age">Âge</label>
-    <input type="number" id="age" class="form-control" formControlName="age" min="0">
-    </div>
-    <div class="form-group">
-      <label for="sex">Sexe</label>
-      <input type="text" id="sex" class="form-control" formControlName="sex">
-    </div>
+    <legend>Informations patient</legend>
+    <mat-form-field>
+      <label>Nom</label>
+      <input matInput type="text" id="lastName" formControlName="lastName">
+    </mat-form-field>
+    <mat-form-field>
+      <label>Prénom</label>
+        <input matInput type="text" id="firstName" formControlName="firstName">
+    </mat-form-field>
+    <mat-form-field>
+      <label>Âge</label>
+    <input matInput type="number" id="age" formControlName="age" min="0">
+    </mat-form-field>
+    <mat-form-field>
+      <label>Sexe</label>
+      <input matInput type="text" id="sex" formControlName="sex">
+    </mat-form-field>
 
+    <legend>Médicament(s)</legend>
+    <div *ngIf="patient.treatments.length > 0">
+      <mat-form-field *ngFor="let treatment of patient.treatments">
+        <label>Nom</label>
+        <input matInput type="text" id="drug" formControlName="treatment.drug">
+      </mat-form-field>
+    </div>
     
+    <div formArrayName="drugs">
+      <div *ngFor="let drug of drugs.controls; let i=index">
+        <div [formGroupName]="i">
+          <mat-form-field>
+            <label>Nom</label>
+            <input matInput type="text" formControlName="drug">
+          </mat-form-field>
+          <mat-form-field>
+            <label>Code</label>
+            <input matInput type="text" formControlName="code">
+          </mat-form-field>
+          <button mat-raised-button color="warn" (click)="removeDrug(i)">Supprimer</button>
+        </div>
+      </div>
+      <button mat-raised-button color="primary" (click)="addDrugs()">Ajouter</button>
 
-    <button class="btn btn-success" (click)="onSubmit()" [disabled]="patientForm.invalid">Valider</button>
+    </div>
+
+    <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="patientForm.invalid">Valider</button>
     <p class="alert-danger" *ngIf="errorMessage">{{ errorMessage }}</p>
   </form>
 </div>
