@@ -20,6 +20,11 @@
         <span *ngFor="let treatment of patient.treatments; let i=index">
           <div>Début : {{ treatment.start }}</div>
           <div>Fin : {{ treatment.end }}</div> 
+          <div>Description : {{treatment.text}}</div>
+          <div>Docteur : Nom : {{treatment.doctor.doctorLastName}}
+            Prénom : {{treatment.doctor.doctorFirstName}}
+            Spécialité : {{treatment.doctor.speciality}}
+          </div>
         </span>
       </div>
       <button class="btn btn-success m-1" (click)="onModify()">Modifier</button>

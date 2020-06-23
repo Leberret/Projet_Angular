@@ -31,9 +31,10 @@ import { Drug } from '../models/Drug.model';
             end: new Date('Mars 17, 2020'),
             text: 'Description',
             doctor: {
-              lastName: 'LE BERRE',
-              firstName: 'Guy',
-              speciality: 'podologue'}
+              doctorLastName: 'LE BERRE',
+              doctorFirstName: 'Guy',
+              speciality: 'podologue'
+            }
           }
         ]
       },
@@ -55,9 +56,10 @@ import { Drug } from '../models/Drug.model';
             end: new Date('Mars 17, 2020'),
             text: 'Description',
             doctor: {
-              lastName: 'LE BERRE',
-              firstName: 'Guy',
-              speciality: 'podologue'}
+              doctorLastName: 'LE BERRE',
+              doctorFirstName: 'Guy',
+              speciality: 'podologue'
+            }
           }
         ]
       }
@@ -137,7 +139,7 @@ import { Drug } from '../models/Drug.model';
       });
     }
 
-    createNewDrug(drug: Drug) {
+    /*createNewDrug(drug: Drug) {
       return new Promise((resolve, reject) => {
         this.http.post('http://localhost:3000/api/drugs', drug).subscribe(
           (response) => {
@@ -149,7 +151,7 @@ import { Drug } from '../models/Drug.model';
         );
       });
 
-    }
+    }*/
   
   }
   

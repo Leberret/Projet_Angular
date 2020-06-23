@@ -1,5 +1,6 @@
 <div class="col-sm-6 offset-sm-3 mt-2">
   <form [formGroup]="patientForm">
+    <legend>Information patient</legend>
     <div class="form-group">
       <label for="lastName">Nom</label>
       <input type="text" id="lastName" formControlName="lastName" class="form-control">
@@ -21,13 +22,15 @@
     </div>
 
 
-      <label for="drugs">Médicament(s)</label>
+    <legend>Médicament(s)</legend>
 
       <div formArrayName="drugs">
         <div *ngFor="let drug of drugs.controls; let i=index">
           <div [formGroupName]="i">
-            Nom : <input type="text" class="form-control" formControlName="drug">
-            Code: <input type="text"  class="form-control" formControlName="code">
+            <label for="drugName">Nom</label>
+            <input type="text" class="form-control" formControlName="drug">
+            <label for="code">Code</label>
+            <input type="text"  class="form-control" formControlName="code">
             <button class="btn btn-danger" (click)="removeDrug(i)">Supprimer</button>
           </div>
         </div>
@@ -35,15 +38,33 @@
 
       </div>
 
-      <label for="treatments">Traitement(s)</label>
+      <legend>Traitement(s)</legend>
 
       <div formArrayName="treatments">
         <div *ngFor="let treatment of treatments.controls; let i=index">
           <div [formGroupName]="i">
-            Début : <input type="date" class="form-control" formControlName="start">
-            Fin : <input type="date"  class="form-control" formControlName="end">
-            Description : <input type="text"  class="form-control" formControlName="text">
-            Docteur : 
+            <label for="start">Date de début</label>
+            <input type="date" class="form-control" formControlName="start">
+            <label for="end">Date de fin</label>
+            <input type="date"  class="form-control" formControlName="end">
+            <label for="text">Description</label>
+            <input type="text"  class="form-control" formControlName="text">
+            
+            <div formGroupName="doctor">
+              <legend>Docteur </legend>
+              <div class="form-group">
+               <label for="doctorLastName">Nom</label>
+                <input type="text" class="form-control" formControlName="doctorLastName">
+              </div>
+              <div class="form-group">
+                <label for="doctorFirstName">Prénom</label>
+                 <input type="text" class="form-control" formControlName="doctorFirstName">
+              </div>
+              <div class="form-group">
+              <label for="speciality">Spécialité</label>
+                <input type="text" class="form-control" formControlName="speciality">
+              </div>
+            </div>
 
             <button class="btn btn-danger" (click)="removeTreatment(i)">Supprimer</button>
           </div>

@@ -1,0 +1,20 @@
+<mat-list role="list" *ngIf="patients.length >= 0">
+    <div *ngFor="let patient of patients" >
+        <p class="text-center" *ngIf="patient.treatments.length <= 0">Aucun docteur !</p>
+        <div *ngIf="patient.treatments.length >= 0">
+            <mat-list-item role="listitem">
+                <div mat-line  *ngFor="let treatment of patient.treatments">
+                    <legend>Dr. {{ treatment.doctor.doctorLastName }} {{ treatment.doctor.doctorFirstName }}</legend>
+                        <label>{{patient.lastName}} {{patient.firstName}} :</label>
+                        <mat-list>
+                            <mat-list-item>Date de début : {{ treatment.start }}</mat-list-item>
+                            <mat-list-item>Date de fin : {{ treatment.end }}</mat-list-item>
+                            <mat-list-item>Description : {{ treatment.text }}</mat-list-item>
+                        </mat-list>
+
+                    <mat-divider></mat-divider>
+                </div>
+            </mat-list-item>
+        </div>
+    </div>
+</mat-list>

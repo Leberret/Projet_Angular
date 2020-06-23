@@ -32,8 +32,8 @@ export class NewPatientComponent {
   }
   newDrug(): FormGroup{
     return this.formBuilder.group({
-      drug:'',
-      code:'',
+      drug:['', Validators.required],
+      code:['', Validators.required],
     })
   }
   addDrugs() {
@@ -51,9 +51,13 @@ export class NewPatientComponent {
     return this.formBuilder.group({
       start: new Date('Janvier 17, 2020'),
       end:new Date('Mars 17, 2020'),
-      text: '',
-      doctor:{},
-    })
+      text: ['', Validators.required],
+      doctor: this.formBuilder.group({
+        doctorLastName: ['', Validators.required],
+        doctorFirstName: ['', Validators.required],
+        speciality: ['', Validators.required]
+      }),
+    });
   }
   addTreatments() {
     this.treatments.push(this.newTreatment());
